@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { GetPlacesFilterDto } from './dto/get-places-filter.dto';
+import { UpdatePlaceProfileDto } from './dto/update-place-profile.dto';
 import { UpdatePlaceStatusDto } from './dto/update-place-status.dto';
 import { Place, PlaceStatus } from './place.model';
 import { PlacesService } from './places.service';
@@ -50,8 +51,13 @@ export class PlacesController {
     return this.placesServices.updatePlaceStatus(id, status);
   }
 
-  //@Patch('/:id/profile')
-  //updatePlaceProfile
+  @Patch('/:id/profile')
+  updatePlaceProfile(
+    @Param('id') id: string,
+    @Body() updatePlaceProfileDto: UpdatePlaceProfileDto,
+  ): Place {
+    return this.placesServices.updatePlaceProfile(id, updatePlaceProfileDto);
+  }
 
   @Delete('/:id')
   deletePlace(@Param('id') id: string): void {

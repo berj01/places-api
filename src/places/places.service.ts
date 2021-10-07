@@ -3,6 +3,7 @@ import { Place, PlaceStatus } from './place.model';
 import { v4 as uuid } from 'uuid';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { GetPlacesFilterDto } from './dto/get-places-filter.dto';
+import { UpdatePlaceProfileDto } from './dto/update-place-profile.dto';
 @Injectable()
 export class PlacesService {
   //id, name, address, site, description etc...
@@ -77,6 +78,25 @@ export class PlacesService {
     return place;
   }
 
-  // updatePlaceProfile(): Place {}
+  updatePlaceProfile(
+    id: string,
+    updatePlaceProfileDto: UpdatePlaceProfileDto,
+  ): Place {
+    const place = this.getPlaceById(id);
+    const { name, site, address, image, ticket, description } =
+      updatePlaceProfileDto;
+
+    //place.atual = novovalor
+    if (name) {
+      place.name = name;
+    }
+    place.site = site;
+    place.address = address;
+    place.image = image;
+    place.ticket = ticket;
+    place.description = description;
+
+    return place;
+  }
 }
 //yarn add uuid
