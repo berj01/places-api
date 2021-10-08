@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier*/
 import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { PlaceStatus } from '../place.model';
+import { PlaceStatus } from '../place-status.enum';
 
 export class GetPlacesFilterDto {
   @IsOptional()
